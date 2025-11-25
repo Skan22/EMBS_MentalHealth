@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --font-sans: Inter, system-ui, sans-serif;
+  --font-display: Outfit, Inter, system-ui, sans-serif;
+
+  --color-sanctuary-50: #f0f9ff;
+  --color-sanctuary-100: #e0f2fe;
+  --color-sanctuary-200: #bae6fd;
+  --color-sanctuary-300: #7dd3fc;
+  --color-sanctuary-400: #38bdf8;
+  --color-sanctuary-500: #0ea5e9;
+  --color-sanctuary-600: #0284c7;
+  --color-sanctuary-700: #0369a1;
+  --color-sanctuary-800: #075985;
+  --color-sanctuary-900: #0c4a6e;
+
+  --color-bloom-50: #fdf4ff;
+  --color-bloom-100: #fae8ff;
+  --color-bloom-200: #f5d0fe;
+  --color-bloom-300: #f0abfc;
+  --color-bloom-400: #e879f9;
+  --color-bloom-500: #d946ef;
+  --color-bloom-600: #c026d3;
+  --color-bloom-700: #a21caf;
+  --color-bloom-800: #86198f;
+  --color-bloom-900: #701a75;
+
+  --color-nature-50: #f0fdf4;
+  --color-nature-100: #dcfce7;
+  --color-nature-200: #bbf7d0;
+  --color-nature-300: #86efac;
+  --color-nature-400: #4ade80;
+  --color-nature-500: #22c55e;
+  --color-nature-600: #16a34a;
+  --color-nature-700: #15803d;
+  --color-nature-800: #166534;
+  --color-nature-900: #14532d;
+
+  --color-warm-50: #fffbeb;
+  --color-warm-100: #fef3c7;
+  --color-warm-200: #fde68a;
+  --color-warm-300: #fcd34d;
+  --color-warm-400: #fbbf24;
+  --color-warm-500: #f59e0b;
+  --color-warm-600: #d97706;
+  --color-warm-700: #b45309;
+  --color-warm-800: #92400e;
+  --color-warm-900: #78350f;
+
+  --animate-breathe: breathe 4s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-glow: glow 2s ease-in-out infinite;
+  --animate-sparkle: sparkle 1.5s ease-in-out infinite;
+}
+
+@keyframes breathe {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes glow {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes sparkle {
+
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-sanctuary-50 via-bloom-50 to-nature-50 min-h-screen;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-bloom-500 to-sanctuary-500 bg-clip-text text-transparent;
+  }
+
+  .glass {
+    @apply bg-white/30 backdrop-blur-lg border border-white/20;
+  }
+
+  .sanctuary-shadow {
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  }
+}
