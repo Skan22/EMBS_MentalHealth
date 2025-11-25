@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-export type EvolutionStage = 'seed' | 'sprout' | 'bloom' | 'radiant';
+export type EvolutionStage = 'baby' | 'child' | 'teen' | 'adult';
 export type EvolutionTrack = 'serene' | 'wise' | 'energetic';
 
 export type SkinTone = 'light' | 'medium' | 'tan' | 'dark';
@@ -61,10 +61,10 @@ interface BloomState {
 
 const calculateStage = (health: number, happiness: number): EvolutionStage => {
     const avg = (health + happiness) / 2;
-    if (avg < 25) return 'seed';
-    if (avg < 50) return 'sprout';
-    if (avg < 75) return 'bloom';
-    return 'radiant';
+    if (avg < 25) return 'baby';
+    if (avg < 50) return 'child';
+    if (avg < 75) return 'teen';
+    return 'adult';
 };
 
 const calculateTrack = (wisdom: number, energy: number): EvolutionTrack => {
@@ -83,7 +83,7 @@ export const useBloomStore = create<BloomState>()(
             energy: 30,
 
             // Initial Evolution
-            stage: 'seed',
+            stage: 'baby',
             track: 'serene',
 
             // Initial Avatar

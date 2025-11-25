@@ -5,7 +5,7 @@ import { useBloomStore } from '../store/useBloomStore';
 import { getItemsByCategory, type StoreItem } from '../data/storeItems';
 
 interface StoreProps {
-    onBack: () => void;
+    onBack?: () => void;
 }
 
 export const Store = ({ onBack }: StoreProps) => {
@@ -74,8 +74,8 @@ export const Store = ({ onBack }: StoreProps) => {
                             key={cat.id}
                             onClick={() => setSelectedCategory(cat.id)}
                             className={`flex-1 py-3 px-4 rounded-xl font-medium transition-all ${selectedCategory === cat.id
-                                    ? 'bg-gradient-to-r from-bloom-500 to-sanctuary-500 text-white shadow-lg'
-                                    : 'glass hover:bg-white/50'
+                                ? 'bg-gradient-to-r from-bloom-500 to-sanctuary-500 text-white shadow-lg'
+                                : 'glass hover:bg-white/50'
                                 }`}
                         >
                             <span className="mr-2">{cat.emoji}</span>
@@ -171,8 +171,8 @@ const ItemCard = ({
                             <button
                                 onClick={onApply}
                                 className={`w-full py-2 px-4 rounded-lg font-medium transition-all ${isActive
-                                        ? 'bg-gradient-to-r from-nature-500 to-nature-600 text-white'
-                                        : 'bg-gradient-to-r from-bloom-500 to-sanctuary-500 text-white hover:shadow-lg'
+                                    ? 'bg-gradient-to-r from-nature-500 to-nature-600 text-white'
+                                    : 'bg-gradient-to-r from-bloom-500 to-sanctuary-500 text-white hover:shadow-lg'
                                     }`}
                             >
                                 {isActive
@@ -199,8 +199,8 @@ const ItemCard = ({
                             onClick={onPurchase}
                             disabled={!canAfford}
                             className={`w-full py-2 px-4 rounded-lg font-medium transition-all flex items-center justify-center gap-2 ${canAfford
-                                    ? 'bg-gradient-to-r from-bloom-500 to-sanctuary-500 text-white hover:shadow-lg'
-                                    : 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                                ? 'bg-gradient-to-r from-bloom-500 to-sanctuary-500 text-white hover:shadow-lg'
+                                : 'bg-gray-200 text-gray-500 cursor-not-allowed'
                                 }`}
                         >
                             <Sparkles className="w-4 h-4" />

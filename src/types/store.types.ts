@@ -1,5 +1,5 @@
 // Store-related types
-export type EvolutionStage = 'seed' | 'sprout' | 'bloom' | 'radiant';
+export type EvolutionStage = 'baby' | 'child' | 'teen' | 'adult';
 export type EvolutionTrack = 'serene' | 'wise' | 'energetic';
 
 export type SkinTone = 'light' | 'medium' | 'tan' | 'dark';

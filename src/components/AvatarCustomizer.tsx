@@ -35,7 +35,7 @@ const hairColors: { value: HairColor; label: string; color: string }[] = [
 ];
 
 export const AvatarCustomizer = ({ isOpen, onClose }: AvatarCustomizerProps) => {
-    const { avatar, updateAvatar } = useBloomStore();
+    const { avatar, updateAvatar, stage } = useBloomStore();
     const [tempAvatar, setTempAvatar] = useState(avatar);
 
     const handleSave = () => {
@@ -63,7 +63,7 @@ export const AvatarCustomizer = ({ isOpen, onClose }: AvatarCustomizerProps) => 
 
                 {/* Customization Options */}
                 <div className="space-y-6">
-                    {/* Skin Tone */}
+                    {/* Skin Tone - Available for all stages */}
                     <div>
                         <h3 className="text-sm font-medium text-gray-700 mb-3">Skin Tone</h3>
                         <div className="grid grid-cols-4 gap-2">
@@ -72,8 +72,8 @@ export const AvatarCustomizer = ({ isOpen, onClose }: AvatarCustomizerProps) => 
                                     key={tone.value}
                                     onClick={() => setTempAvatar({ ...tempAvatar, skinTone: tone.value })}
                                     className={`p-3 rounded-lg border-2 transition-all ${tempAvatar.skinTone === tone.value
-                                            ? 'border-bloom-500 shadow-lg'
-                                            : 'border-gray-200 hover:border-gray-300'
+                                        ? 'border-bloom-500 shadow-lg'
+                                        : 'border-gray-200 hover:border-gray-300'
                                         }`}
                                     title={tone.label}
                                 >
@@ -86,47 +86,60 @@ export const AvatarCustomizer = ({ isOpen, onClose }: AvatarCustomizerProps) => 
                         </div>
                     </div>
 
-                    {/* Hair Style */}
-                    <div>
-                        <h3 className="text-sm font-medium text-gray-700 mb-3">Hair Style</h3>
-                        <div className="grid grid-cols-3 gap-2">
-                            {hairStyles.map((style) => (
-                                <button
-                                    key={style.value}
-                                    onClick={() => setTempAvatar({ ...tempAvatar, hairStyle: style.value })}
-                                    className={`px-4 py-2 rounded-lg border-2 transition-all text-sm font-medium ${tempAvatar.hairStyle === style.value
-                                            ? 'border-bloom-500 bg-bloom-50 text-bloom-700'
-                                            : 'border-gray-200 hover:border-gray-300'
-                                        }`}
-                                >
-                                    {style.label}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
+                    {/* Hair Options - Only for Child and above */}
+                    {stage !== 'baby' && (
+                        <>
+                            {/* Hair Style */}
+                            <div>
+                                <h3 className="text-sm font-medium text-gray-700 mb-3">Hair Style</h3>
+                                <div className="grid grid-cols-3 gap-2">
+                                    {hairStyles.map((style) => (
+                                        <button
+                                            key={style.value}
+                                            onClick={() => setTempAvatar({ ...tempAvatar, hairStyle: style.value })}
+                                            className={`px-4 py-2 rounded-lg border-2 transition-all text-sm font-medium ${tempAvatar.hairStyle === style.value
+                                                ? 'border-bloom-500 bg-bloom-50 text-bloom-700'
+                                                : 'border-gray-200 hover:border-gray-300'
+                                                }`}
+                                        >
+                                            {style.label}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
 
-                    {/* Hair Color */}
-                    <div>
-                        <h3 className="text-sm font-medium text-gray-700 mb-3">Hair Color</h3>
-                        <div className="grid grid-cols-3 gap-2">
-                            {hairColors.map((color) => (
-                                <button
-                                    key={color.value}
-                                    onClick={() => setTempAvatar({ ...tempAvatar, hairColor: color.value })}
-                                    className={`p-3 rounded-lg border-2 transition-all ${tempAvatar.hairColor === color.value
-                                            ? 'border-bloom-500 shadow-lg'
-                                            : 'border-gray-200 hover:border-gray-300'
-                                        }`}
-                                    title={color.label}
-                                >
-                                    <div
-                                        className="w-full h-8 rounded"
-                                        style={{ backgroundColor: color.color }}
-                                    />
-                                </button>
-                            ))}
+                            {/* Hair Color */}
+                            <div>
+                                <h3 className="text-sm font-medium text-gray-700 mb-3">Hair Color</h3>
+                                <div className="grid grid-cols-3 gap-2">
+                                    {hairColors.map((color) => (
+                                        <button
+                                            key={color.value}
+                                            onClick={() => setTempAvatar({ ...tempAvatar, hairColor: color.value })}
+                                            className={`p-3 rounded-lg border-2 transition-all ${tempAvatar.hairColor === color.value
+                                                ? 'border-bloom-500 shadow-lg'
+                                                : 'border-gray-200 hover:border-gray-300'
+                                                }`}
+                                            title={color.label}
+                                        >
+                                            <div
+                                                className="w-full h-8 rounded"
+                                                style={{ backgroundColor: color.color }}
+                                            />
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        </>
+                    )}
+
+                    {stage === 'baby' && (
+                        <div className="p-4 bg-bloom-50 rounded-xl text-center">
+                            <p className="text-sm text-bloom-700">
+                                Your baby pet is growing! Evolve to unlock hair styles.
+                            </p>
                         </div>
-                    </div>
+                    )}
                 </div>
             </div>
 
